@@ -7,25 +7,25 @@ section: Tutorial
 
 # Integrating with 3rd party services
 
-This tutorial shows you how to integrate extension with 3rd party service, such as Shopify. We're going to write our own little service that will communicate with Shopify and provide Shoutem with API token to access 3rd party service data.
+This tutorial shows you how to integrate extension with 3rd party service, such as Shopify. We're going to write our own little service that communicates with Shopify and provide Shoutem with API token to access 3rd party service data.
 
 > #### Note
-> This tutorial includes knowledge from [Getting started]({{ site.baseurl }}/docs/extensions/getting-started/introduction) and [Writting a settings page]({{ site.baseurl }}/docs/extensions/tutorials/writing-settings-page) so make sure to pass them before.
+> This tutorial includes knowledge from [Getting started]({{ site.baseurl }}/docs/extensions/getting-started/introduction) and [Writting a settings page]({{ site.baseurl }}/docs/extensions/tutorials/writing-settings-page) tutorials so make sure to pass them before.
 
-## Shopify application
+## Components
 
-Before describing what we're going to build, these underline concepts need to be understood:
+There are 4 components:
 
 - Shopify App & Shopify Store
-- Shoutem App & Shopify Extension
+- Shoutem App & Shoutem Extension
 
-We're building ***Shoutem*** _extension_ which will be used in ***Shoutem*** _apps_. ***Shoutem*** _extension_ will use **your** ***Shopify*** _app_ to have authorized access over ***Shopify*** store of application owners that installed ***Shopify*** _extension_ to their ***Shoutem*** _application_. When talking about _application owners_, we think of Shoutem app.
+We're building _Shoutem extension_ which will be used in _Shoutem apps_. _Shoutem extension_ will use **your** _Shopify app_ to have authorized access over _Shopify store_ of application owners.
 
 For purpose of this tutorial, you will need to become [Shopify Developer](https://developers.shopify.com) (type of Shopify Partner) to create Shopify app. Once you've [created account](https://app.shopify.com/services/partners/signup/developer), creating Shopify app is pretty straightforward. Read [Shopify's documentation](https://docs.shopify.com/api/guides/introduction) on how to create your ***Shopify*** _app_. Enter app's name, leave the default settings and for App URL and Redirect URL, choose `http://localhost`.
 
 ## About the extension
 
-Shopify extension will enable application owners, to sell products from their Shopify store to users of their app. Owners will need to authorize your Shopify app to get products from owners' store. Users will be able to put products to the basket and make a purchase. 
+Extension will enable application owners to sell products from their Shopify store to users of their app. Owners will need to authorize your Shopify app to get products from owners' store. Users will be able to put products to the basket and make purchases.
 
 ## Creating UI
 
@@ -56,13 +56,14 @@ We're going to need 4 screens:
 - Add to card
 - Checkout
 
-For example of selling clothes, we create static assets that you can use as mock data. [Download](/docs/coming-soon) those assets and put them to `app/assets` folder. Add shortcut and assign it first list screen.
+For example of selling devices, we create static assets that you can use as mock data. [Download](/docs/coming-soon) those assets and place them to new `app/assets` folder. Add shortcut and assign it first list screen.
 
 ```ShellSession
 $ shoutem shortcut add products --with-screen=ProductsList
 Enter shortcut information.
 Title: Products
 Description: List products and enable users to buy them.
+Extension initialized.
 ```
 
 This will create a shortcut, screen and reference in the shortcut. This is the extension.json that you should have by now:
@@ -89,6 +90,7 @@ This will create a shortcut, screen and reference in the shortcut. This is the e
 Implement list screen of products from assets using [Shoutem UI Toolkit](http://shoutem.github.io/docs/ui-toolkit/introduction).
 
 ```JavaScript
+#file: app/screens/ProductsList.js
 import React from 'react';
 import {
   Image,
@@ -107,7 +109,7 @@ export default class ProductList extends React.Component {
         source={{ uri: product.image && product.image.url ? product.image.url : undefined }}
       />
       <View styleName="vertical stretch space-between">
-        <Subtitle>{{ product.title }}/Subtitle>
+        <Subtitle>{{ product.title }}</Subtitle>
         <View styleName="horizontal">
           <Subtitle styleName="md-gutter-right">{{ product.price }}</Subtitle>
         </View>
