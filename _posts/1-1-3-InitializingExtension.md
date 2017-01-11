@@ -1,29 +1,28 @@
 ---
 layout: doc
 permalink: /docs/extensions/getting-started/initializing-extension
-title: Initializing extension
-section: Getting Started
+title: 配置扩展
+section: 入门
 ---
 
-# Initializing extension
+# 配置扩展
 <hr />
 
-Here's the mockup of the Restaurants extension that we've showed in [Introduction]({{ site.baseurl }}/docs/getting-started/introduction). We're building _Restaurants_ extension.
-
+这里是我们在[简介]({{ site.baseurl }}/docs/getting-started/introduction)中显示的餐馆扩展的样机（我也不知道怎么翻译..）。 我们正在构建_Restaurants_扩展。
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/extension-preview.jpg'/>
 </p>
- 
-Left application screen lists the restaurants and the right one shows the details of one specific restaurant. 
 
-Let's start building! Locate to folder where you want to keep extension files:
+左应用程序界面列出restaurants后，右边的显示一个特定的restaurant详细信息。 
+
+让我们开始创建吧！找到您要保留扩展文件的文件夹：
 
 ```ShellSession
 $ mkdir Restaurants && cd Restaurants
 ```
 
-Initialize the extension with basic extension data.
+使用基本扩展数据进行初始化扩展。
 
 ```ShellSession
 $ shoutem init restaurants
@@ -35,13 +34,13 @@ Description: List of restaurants
 Extension initialized!
 ```
 
-These information will be stored in `extension.json` file.
+这些信息将存储在`extension.json`文件中。
 
-> #### Note
-> In case you can't remember the structure of some command, type: `shoutem -h` or `shoutem <command> -h` where you should replace '[command]' with one of the [CLI commands]({{ site.baseurl }}/docs/extensions/reference/cli)
+> #### 注意
+> 如果你不记得一些命令的结构，输入：`shoutem -h`或`shoutem <command> -h`，你应该用[CLI commands]({{ site.baseurl }}/docs/extensions/reference/cli)
 
-## Folder structure
-Initialization process will generate the skeleton folder and file structure for you. Your structure looks as follows:
+## 目录结构
+初始化过程将为您生成骨架文件夹和文件结构。 您的结构如下所示：
 
 ```
 Restaurants/
@@ -54,15 +53,15 @@ Restaurants/
   └ extension.json
 ```
 
-Let's describe the structure:
+让我们描述一下结构：
 
-- `app/`: Application code
-- `server/`: Server code
-- `extension.json`: Extension general information
+- `app/`: 应用代码
+- `server/`: 服务端代码
+- `extension.json`: 扩展的基础信息
 
-Specific parts will be described a bit later.
+具体部分稍后会进行描述。
 
-In `extension.json` you can see:
+在`extension.json`文件中你可以看到：
 
 ```JSON
 #file: extension.json
@@ -74,9 +73,9 @@ In `extension.json` you can see:
 }
 ```
 
-Property `name`, combined with your developer name, uniquely identifies the extension: `developer.restaurants`. We'll use property `name` to define extensions parts too.
+`name`属性，结合您的开发人员名称，唯一标识该扩展：`developer.restaurants`。我们将使用属性`name`来定义扩展部分。
 
-Extension is now only locally available on your machine. We need to upload it to Shoutem so you can install it in the application.
+扩展现在只在您的计算机上本地可用。 我们需要将其上传到Shoutem，以便您可以在应用程序中安装它。
 
 ```ShellSession
 $ shoutem push
@@ -84,7 +83,8 @@ Uploading `Restaurants` extension to Shoutem...
 Success!
 ```
 
-To test our extension, we need to install it in the Shoutem application. You can create new application in [Shoutem builder](/docs/coming-soon) or just pass flag `--new`  with the name for new application to installation command:
+要测试我们的扩展，我们需要在Shoutem应用程序中安装它。 
+您可以在[Shoutem 构建器](/docs/coming-soon)中创建新应用程序，或在新安装应用的命令中带上`--new`选项。
 
 ```ShellSession
 $ shoutem install --new Restaurants
@@ -92,16 +92,16 @@ Extension is installed onto newly created `Restaurants` application.
 See it in browser: `https://builder.shoutem.com/apps/52634`
 ```
 
-Go to `Extensions` tab in [Shoutem builder](/docs/coming-soon). You'll see that extension is installed on your application.
+转到[Shoutem 构建器](/docs/coming-soon)中的`Extensions`选项卡。您将看到您的应用程序上安装了该扩展程序。
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/extension-tab-extension.png'/>
 </p>
 
-However, when you go to `Screen` tab now and click on `+` next to `Screens`, this extension won't be shown.
+然而，当你现在进入`Screen`选项卡，然后点击`Screen`旁边的`+`，这个扩展将不会显示。
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/add-content-no-extension.png'/>
 </p>
 
-That's because `Add screen` modal shows only extensions with _shortcuts_. We need to create shortcut in our extensions.
+这是因为`Add screen` 模态框只显示_shortcuts_的扩展。 我们需要在扩展中创建快捷方式。
