@@ -1,18 +1,27 @@
 ---
 layout: doc
 permalink: /docs/extensions/getting-started/using-ui-toolkit
-title: Using UI toolkit
-section: Getting Started
+title: 使用UI框架
+section: 入门
 ---
 
-# Using UI toolkit
+# 使用UI框架
 <hr />
 
-React Native exposes plain components that you can use, but there's usually much work left to do to make them look professional. Use [Shoutem UI toolkit](https://shoutem.github.io/ui), a set of 3 packages for building professional UI/UX in React Native: [@shoutem/ui](https://github.com/shoutem/ui), [@shoutem/theme](https://github.com/shoutem/theme) and [@shoutem/animation](https://github.com/shoutem/animation). We'll use `@shoutem/ui`, consisting of styleable UI components that you can use in any React Native application. It basically turns any ordinary app into an amazing app. There are plenty of components that you can use out of the box. Documentation for all the components can be found on the [this portal]({{ site.baseurl }}/docs/ui-toolkit/introduction).
+React Native暴露了你可以使用的普通组件，但是为了使他们看起来更加专业，通常还有很多工作要做。 
+使用[Shoutem UI框架](https://shoutem.github.io/ui)， 一组用于在React Native中构建专业UI/UX的3个软件包：
+- [@shoutem/ui](https://github.com/shoutem/ui)
+- [@shoutem/theme](https://github.com/shoutem/theme)
+- [@shoutem/animation](https://github.com/shoutem/animation)
 
-## Adding static data
+我们将使用`@shoutem/ui`，包含可以在任何React Native应用程序中使用的样式化UI组件。 
+它基本上将任何普通的应用变成一个惊人的应用。 有很多组件，你可以使用开箱即用。 
+所有组件的文档可以在[这里]({{ site.baseurl }}/docs/ui-toolkit/introduction)中找到。
 
-Let's add static restaurants and show them in list. Start by importing UI components from the toolkit.
+## 添加静态数据
+
+让我们添加静态restaurants，并在列表中显示。 
+首先从工具包导入UI组件。
 
 ```javascript{4-13}
 #file: app/screens/RestaurantsList.js
@@ -31,9 +40,10 @@ import {
 import { NavigationBar } from '@shoutem/ui/navigation';
 ```
 
-We prepared some data for you. Create `app/assets` folder, which will keep the assets for application part of your extension, and extract [this JSON file](/restaurants/restaurants.zip) inside, which contains restaurants data.
+我们为您准备了一些数据。 
+创建`app/assets`文件夹，保存扩展的应用程序部分的资源，并提取[这个JSON文件](/restaurants/restaurants.zip)，其中包含restaurants数据。
 
-Define a method in `RestaurantsList` class that returns an array of restaurants.
+在`RestaurantsList`类中定义一个返回restaurants数组的方法。
 
 ```javascript{3-5}
 #file: app/screens/RestaurantsList.js
@@ -44,9 +54,10 @@ export default class RestaurantsList extends Component {
   }
 ```
 
-Implement `render` method that will use `ListView`. `ListView` accepts data in the form of `Array` to show in the list and `renderRow` method which defines how list row should look like.
+实现使用`ListView`的`render`方法。 
+`ListView`接受以数组形式显示在列表中的数据和`renderRow`方法，它定义了列表行的外观。
 
-Add `renderRow` method and replace implementation of `render` method:
+添加`renderRow`方法并替换`render`方法的实现：
 
 ```JSX{3-13,16-25}
 #file: app/screens/RestaurantsList.js
@@ -77,7 +88,7 @@ Add `renderRow` method and replace implementation of `render` method:
   }
 ```
 
-Upload the extension:
+上传扩展：
 
 ```ShellSession
 $ shoutem push
@@ -85,26 +96,27 @@ Uploading `Restaurants` extension to Shoutem...
 Success!
 ```
 
-`RestaurantsList` is now showing list of restaurants. 
+`RestaurantsList`现在已经显示了restaurants的列表。
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/extension-rich-list.png'/>
 </p>
 
-This looks exactly how we wanted.
+这看起来正是我们想要的。
 
-Try clicking on a row. Nothing happens! We want to open up a details screen when list row item is clicked.
+尝试点击一行。 什么都没发生！ 我们希望在单击列表行项时打开详细信息屏幕。
 
-## Creating details screen
+## 创建详细信息屏幕
 
-First, create details screen:
+首先，创建详细信息屏幕：
 
 ```ShellSession
 $ shoutem screen add RestaurantDetails
 File `app/screens/RestaurantDetails.js` is created.
 ```
 
-Screen is defined in extension.json. Don't forget to export it in `index.js`.
+Screen在`extension.json`文件中定义。 
+不要忘记在`index.js`中导出它。
 
 ```JSX{2,6}
 #file: app/index.js
@@ -119,11 +131,14 @@ export const screens = {
 export const reducer = {};
 ```
 
-When list item is touched, we want to open details screen. For that we need `TouchableOpacity` component from React Native and Shoutem's `navigateTo` Redux action creator. It accepts Shoutem `route object` (with `screen` and `props` properties) as the only argument.
+当触摸列表项时，我们要打开详细信息屏幕。 
+为此，我们需要来自React Native的`TouchableOpacity`和Shoutem的`navigateTo` - Redux动作创建器。 它接受Shoutem的`route对象`（具有`screen`和`props`属性）作为唯一的参数。
 
-To reference our `RestaurantDetails` screen exported in `app/index.js`, we're using `ext` helper function that was created in `app/const.js` file. This function returns an **absolute name**, e.g. `developer.restaurants.RestaurantsList`, for the extension part which is passed as its first argument, or extension `name` if no argument is passed.
 
-Let's import these things:
+为了引用`app/index.js`中导出的`RestaurantDetails`屏幕，我们使用`app/const.js`文件中创建的`ext` helper函数。 
+此函数返回**绝对名称**，例如 `developer.restaurants.RestaurantsList`，对于作为其第一个参数传递的扩展部分，如果没有传递参数，则为扩展名`name`。
+
+让我们导入这些东西：
 
 ```javascript{1-5}
 #file: app/screens/RestaurantsList.js
@@ -134,7 +149,10 @@ import { navigateTo } from '@shoutem/core/navigation';
 import { ext } from '../const';
 ```
 
-To open a screen on touch, we need to dispatch `navigateTo`. We can use it directly in the screen through dispatch, but Redux standard way is to bind together `dispatch` and action creator inside `mapDispatchToProps` function, the second argument of [connect](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) function. Bound actions are accessed through the `props` which is why we need to bind `renderRow` action to the right `this` context.
+要打开一个触摸屏幕，我们需要触发`navigateTo`。
+我们可以通过dispatch直接在屏幕上使用它，但Redux标准的方法是将`dispatch`和action创建器绑定在`mapDispatchToProps`函数中，[connect](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) 函数的第二个参数。 
+绑定动作通过`props`访问，这就是为什么我们需要绑定`renderRow`动作到正确的`this`上下文。
+
 
 ```javascript{1-8,12-15}
 #file: app/screens/RestaurantsList.js
@@ -155,7 +173,7 @@ export default connect(
 )(RestaurantsList);
 ```
 
-Implement `renderRow` function.
+实现`renderRow`函数。
 
 ```JSX{2,5-8,16}
 #file: app/screens/RestaurantsList.js
@@ -179,7 +197,7 @@ Implement `renderRow` function.
   }
 ```
 
-This is what you should have end up with in `app/screens/RestaurantsList.js`:
+这就是你最终在`app/screens/RestaurantsList.js`该有的东西：
 
 ```JSX
 #file: app/screens/RestaurantsList.js
@@ -252,7 +270,8 @@ export default connect(
 )(RestaurantsList)
 ```
 
-To `RestaurantDetails` screen, just copy the following code. We're not introducing anything new, just using some new components.
+到`RestaurantDetails`屏幕，只需复制以下代码。 
+我们不会引入任何新的，只是使用一些新的组件。
 
 ```JSX
 #file: app/screens/RestaurantDetails.js
@@ -332,9 +351,9 @@ export default class RestaurantDetails extends Component {
 }
 ```
 
-We'll skip implementing the handling of web and e-mail properties and just render them.
+我们将跳过实现Web和电子邮件属性的处理，并只渲染它们。
 
-Upload the extension:
+上传扩展：
 
 ```ShellSession
 $ shoutem push
@@ -342,11 +361,11 @@ Uploading `Restaurants` extension to Shoutem...
 Success!
 ```
 
-When you click on a row in the list, this is what you get:
+当您点击列表中的某一行时，会得到：
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/extension-rich-details.png'/>
 </p>
 
-That's exactly what we wanted to get! However, our app is using static data. Let's connect it to **Shoutem Cloud Storage**. 
-
+这正是我们想要的！ 但是，我们的应用程序正在使用静态数据。 
+让我们将它连接到**Shoutem Cloud Storage**。
