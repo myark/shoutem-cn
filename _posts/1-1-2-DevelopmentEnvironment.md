@@ -1,27 +1,29 @@
 ---
 layout: doc
 permalink: /docs/extensions/getting-started/development-environment
-title: Setting up the environment
-section: Getting Started
+title: 设置环境
+section: 入门
 ---
 
-# Setting up the environment
+# 设置环境
 <hr />
 
-Before making an extension, set the development environment. Download Shoutem [Command Line Interface](https://www.npmjs.com/package/@shoutem/cli) (CLI), tool available through `npm`, the package management system for `Node.js`:
+在开始创建一个扩展之前，请先设置好开发环境。
+在命令行下安装Shoutem[命令行界面](https://www.npmjs.com/package/@shoutem/cli) (CLI)，通过`npm`工具即可：
 
 ```ShellSession
 $ npm install -g @shoutem/cli
 ``` 
 
-> #### Note
-> In case you don't have `npm` installed, the best way to install it is by [installing](https://nodejs.org/en/download/) `Node.js`, which includes `npm`. If previous command fails because of _permission_ issues, you need to run it with `sudo` permission.
+> #### 注意
+> 如果你没有安装npm，最好的安装方法是通过[安装](https://nodejs.org/en/download/) Node.js，它包括了npm命令。 如果上一个命令由于_权限_问题失败，您需要使用`sudo`权限运行它。
 
-Flag ```-g``` is to install CLI globally, so you can use `shoutem` command from any folder.
+标志```-g``是全局安装CLI，所以你可以在任何文件夹中使用`shoutem`命令。
 
 <hr />
 
-Each Shoutem user can become Shoutem developer. If you haven't already, go to [Shoutem](http://www.shoutem.com) and create new account. Now you can register as a developer with:
+每个Shoutem用户都可以成为Shoutem的开发人员。 如果您还没有，请转到[Shoutem](http://www.shoutem.com)并创建新帐户。 
+现在您可以注册为开发人员：
 
 ```ShellSession
 $ shoutem login
@@ -30,7 +32,7 @@ Email: developer@example.com
 Password:
 ```
 
-Once you entered correct Shoutem credentials, you will be asked to specify your developer name.
+输入正确的Shoutem凭据后，系统将要求输入指定的开发人员名称。
 
 ```ShellSession
 
@@ -41,5 +43,5 @@ Developer name: developer
 Registered as `developer`.
 ```
 
-## Editor
-For writing extensions, you only need an editor. Use **editor of your choice**.
+## 编辑器
+要编写扩展，你只需要一个编辑器就够了。使用**你所喜欢的编辑器**即可！
