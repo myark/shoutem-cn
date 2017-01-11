@@ -1,8 +1,8 @@
 title: Shoutem Developers
-email: tomislav.tenodi@shoutem.com
+email: -
 description: Supercharge your React Native development with Shoutem
-twitter_username: TomislavTenodi
-github_username:  tenodi
+twitter_username: -
+github_username:  myark
 tracking_id: UA-807293-5
 
 sass:
@@ -15,5 +15,5 @@ kramdown:
   syntax_highlighter_opts:
     disable : true
 
-url: "http://shoutem.github.io"
+url: "https://myark.github.io/shoutem-cn"
 exclude: ['api-src/']
