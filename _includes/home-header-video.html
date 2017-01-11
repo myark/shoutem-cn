@@ -1,38 +1,38 @@
 <video autoplay loop class="video-screen">
-	<source src="/video/header.webm" type="video/webm" />
-	<source src="/video/header.mp4" type="video/mp4" />
+  <source src="/shoutem-cn/video/header.webm" type="video/webm" />
+  <source src="/shoutem-cn/video/header.mp4" type="video/mp4" />
 </video>
 <script>
-	var vc = document.querySelector(".video-screen");
-	var vcParent = vc.parentElement;
-	var temp;
+  var vc = document.querySelector(".video-screen");
+  var vcParent = vc.parentElement;
+  var temp;
 
-	if( window.matchMedia )
-	{
-		var mq = window.matchMedia("only screen and (-webkit-min-device-pixel-ratio: 2),only screen and ( min--moz-device-pixel-ratio: 2), only screen and ( o-min-device-pixel-ratio: 2/1), only screen and ( min-device-pixel-ratio: 2), only screen and ( min-resolution: 192dpi), only screen and ( min-resolution: 2dppx)");
+  if( window.matchMedia )
+  {
+    var mq = window.matchMedia("only screen and (-webkit-min-device-pixel-ratio: 2),only screen and ( min--moz-device-pixel-ratio: 2), only screen and ( o-min-device-pixel-ratio: 2/1), only screen and ( min-device-pixel-ratio: 2), only screen and ( min-resolution: 192dpi), only screen and ( min-resolution: 2dppx)");
 
-		if( mq && mq.matches )
-		{
-			vc.pause();
-			vcParent.removeChild(vc);
+    if( mq && mq.matches )
+    {
+      vc.pause();
+      vcParent.removeChild(vc);
 
-			vc = document.createElement("video");
-			vc.className = "video-screen";
-			vc.setAttribute("autoplay", true);
-			vc.setAttribute("loop", true);
-			vcParent.appendChild(vc);
+      vc = document.createElement("video");
+      vc.className = "video-screen";
+      vc.setAttribute("autoplay", true);
+      vc.setAttribute("loop", true);
+      vcParent.appendChild(vc);
 
-			temp = document.createElement("source");
-			temp.setAttribute("src", "/video/header@2x.webm");
-			temp.setAttribute("type", "video/webm");
-			vc.appendChild(temp);
+      temp = document.createElement("source");
+      temp.setAttribute("src", "/shoutem-cn/video/header@2x.webm");
+      temp.setAttribute("type", "video/webm");
+      vc.appendChild(temp);
 
-			temp = document.createElement("source");
-			temp.setAttribute("src", "/video/header@2x.mp4");
-			temp.setAttribute("type", "video/mp4");
-			vc.appendChild(temp);
+      temp = document.createElement("source");
+      temp.setAttribute("src", "/shoutem-cn/video/header@2x.mp4");
+      temp.setAttribute("type", "video/mp4");
+      vc.appendChild(temp);
 
-			vc.play();
-		}
-	}
+      vc.play();
+    }
+  }
 </script>
