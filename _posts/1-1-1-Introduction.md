@@ -7,7 +7,7 @@ section: 入门
 
 # 入门
 <hr />
-本教程会介绍如何在Shoutem平台傻姑娘编写自定义的**Shoutem扩展**。它介绍了最重要的概念
+本教程会介绍如何在Shoutem平台上编写自定义的**Shoutem扩展**。它介绍了最重要的概念
 完成后，您将有一个运行的**移动应用**，它使用**自定义扩展**和[Shoutem UI 工具包]({{ site.baseurl }}/docs/ui-toolkit/introduction)进行创建，并从 _Shoutem Cloud Storage_中进行数据存储。
 
 这是一个完成的应用预览图片。
