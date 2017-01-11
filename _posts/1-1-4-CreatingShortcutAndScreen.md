@@ -1,14 +1,16 @@
 ---
 layout: doc
 permalink: /docs/extensions/getting-started/shortcut-and-screen
-title: Creating shortcut and screen
-section: Getting Started
+title: 创建快捷方式和屏幕
+section: 入门
 ---
 
-# Creating shortcut and screen
+# 创建快捷方式和屏幕
 <hr />
 
-The easiest way to understand what shortcuts are, is to think of them as **links** to the starting screen of your extension. These links will be used to navigate to your extension from any part of the application. Extensions can expose multiple shortcuts. Let's create one now.
+了解快捷方式的最简单方法是将它们视为**链接**到扩展的开始屏幕。 
+这些链接将用于从应用程序的任何部分导航到您的扩展。 
+扩展程序可以显示多个快捷方式。 让我们现在创建一个。
 
 ```ShellSession
 $ shoutem shortcut add openRestaurantsList
@@ -19,7 +21,7 @@ Description: Enable users to browse through list of restaurants
 `openRestaurantsList` shortcut is created.
 ```
 
-Your `extension.json` was just modified:
+你的`extension.json`文件刚刚修改了：
 
 ```json{6-10}
 #file: extension.json
@@ -36,18 +38,18 @@ Your `extension.json` was just modified:
 }
 ```
 
-Let's add a screen now. Screens are React components that represent a mobile screen.
+让我们现在添加一个屏幕。 屏幕是代表移动屏幕的React组件。
 
-### Creating list screen
+### 创建列表屏幕
 
-Create a new screen:
+创建一个新的屏幕：
 
 ```ShellSession
 $ shoutem screen add RestaurantsList
 File `app/screens/RestaurantsList.js` is created.
 ```
 
-Screen definition was appended to extension.json.
+屏幕定义附加到extension.json。
 
 ```json{11-13}
 #file: extension.json
@@ -67,7 +69,7 @@ Screen definition was appended to extension.json.
 }
 ```
 
-Shoutem CLI also created `app/screens/` folder with `RestaurantsList.js` file:
+Shoutem CLI还创建了`app/screens/`文件夹与`RestaurantsList.js`文件：
 
 ```javascript
 #file: app/screens/RestaurantList.js
@@ -87,7 +89,8 @@ export default class RestaurantsList extends Component {
 }
 ```
 
-In React, `Component` specifies its UI in `render` method. Now when the screen is created, we need to connect it to shortcut in extension.json.
+在React中，`Component`在`render`方法中指定它的UI。 
+现在当屏幕创建时，我们需要将其连接到extension.json中的shortcut。
 
 ```json{10}
 #file: extension.json
@@ -108,11 +111,16 @@ In React, `Component` specifies its UI in `render` method. Now when the screen i
 }
 ```
 
-Notice that object in `shortcuts` has property `name`, which identifies it and `screen`, which represents the screen to be opened when shortcut is tapped. In the `name` property, use **relative name** to define an extension part. In properties like `screen`, where some extension part is referenced, use **absolute name**. Absolute name of extension part follows this structure: `{developerName}.{extensionName}.{extensionPartName}`. However, for parts of the current extension, you can simply use `@.{extensionPartName}` instead. Characters `@.` replace your `{developerName}.{extensionName}.`.
+注意，`shortcuts`中的对象有`name`属性，它标识它和`screen`，它代表当轻击shortcut时要打开的screen。 
+在`name`属性中，使用**relative name**来定义扩展部分。 
+在像`screen`这样的属性中，引用了一些扩展部分，使用**absolute name**。 
+扩展部分的绝对名称遵循以下结构：`{developerName}.{extensionName}.{extensionPartName}`。 
+但是，对于当前扩展的部分，可以简单地使用`@.{extensionPartName}`。 字符`@.`替换您的`{developerName}.{extensionName}.`。
 
-## Exporting extension parts
+## 导出扩展部分
 
-Application needs to know where it can find extension parts. To give you freedom to use any folder structure for your extension, we expect your `app` folder to contain file named `index.js` which exports all the extension parts, such as:
+应用程序需要知道在哪里可以找到扩展部件。  
+为了让你自由地为你的扩展使用任何文件夹结构，我们希望你的`app`文件夹包含名为`index.js`的文件，它导出所有的扩展部分，例如：
 
 - screens,
 - reducer,
@@ -120,7 +128,7 @@ Application needs to know where it can find extension parts. To give you freedom
 - middleware and
 - application lifecycle methods.
 
-We won't use the last three in this tutorial, but you can find more information [here](/docs/coming-soon). Current `index.js` looks as follows:
+我们不会使用本教程中的最后三个，但是你可以在[这里](/docs/coming-soon)找到更多信息。 当前的`index.js`看起来如下：
 
 ```JSX
 #file: app/index.js
@@ -132,7 +140,7 @@ export const screens = {};
 export const reducer = {};
 ```
 
-Export created screen.
+导出已经创建好的screen。
 
 ```javascript{1,4}
 #file: app/index.js
@@ -145,7 +153,7 @@ export const screens = {
 export const reducer = {};
 ```
 
-Upload your extension:
+更新你的扩展：
 
 ```ShellSession
 $ shoutem push
@@ -153,16 +161,17 @@ Uploading `Restaurants` extension to Shoutem...
 Success!
 ```
 
-Go to `Screens` in [Shoutem builder](/docs/coming-soon) and click on `+`. You can finally see your `Restaurants` extension there. If extension has more shortcuts, you can see them when you hover over the extension.
+在[Shoutem 构建器](/docs/coming-soon)中点击`Screens`，然后点击`+`。 
+你终于可以看到你的`Restaurants`扩展。 如果扩展程序有更多shortcuts，则可以悬停在扩展程序上方时看到它们。
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/add-modal-shortcut.png'/>
 </p>
 
-Click on the `Restaurants` extension. Shortcut is inserted into app navigation.
+点击`Restaurants`扩展名。 Shotcut将会插入到应用导航中。
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/extension-hello-world.png'/>
 </p>
 
-In the preview, you can see the _Hello World_ screen. Let's put some UI components on the screen.
+在预览中，您可以看到_Hello World_屏幕。 让我们在屏幕上放一些UI组件。
