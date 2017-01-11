@@ -1,51 +1,56 @@
 ---
 layout: doc
 permalink: /docs/extensions/getting-started/introduction
-title: Introduction
-section: Getting Started
+title: 介绍
+section: 入门
 ---
 
-# Getting Started
+# 入门
 <hr />
+本教程会介绍如何在Shoutem平台傻姑娘编写自定义的**Shoutem扩展**。它介绍了最重要的概念
+完成后，您将有一个运行的**移动应用**，它使用**自定义扩展**和[Shoutem UI 工具包]({{ site.baseurl }}/docs/ui-toolkit/introduction)进行创建，并从 _Shoutem Cloud Storage_中进行数据存储。
 
-This tutorial shows how to write custom **Shoutem extensions** on Shoutem platform. It introduces the most important concepts. After completing it, you will have a running **mobile app** that uses created **custom extension** with components from [Shoutem UI Toolkit]({{ site.baseurl }}/docs/ui-toolkit/introduction) and retrieves content from the _Shoutem Cloud Storage_.
-
-Here's a preview how completed app will look like.
-
+这是一个完成的应用预览图片。
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/extension-preview.jpg'/>
 </p>
 
-## What are the extensions?
-As shown on the following picture, every Shoutem application is made of extensions.
+## 什么是扩展？
+如下图所示，每个Shoutem应用程序都是由扩展进行创建的。
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/apps-are-made-of-extensions.png'/>
 </p>
 
-Extensions represent small features that are connected to application. Application owner connects wanted extensions to application's main navigation through Shoutem Builder and fills out the content. Shoutem prepared a bunch of **open sourced** extensions which you can easily customize to your needs.
+扩展是一个个连接应用程序的小功能。 应用程序所有者通过Shoutem Builder将所需的扩展连接到应用程序的主导航界面，并填补好内容。 Shoutem准备了一个**开源**扩展，你可以轻松地根据您的需要进行定制。
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/shoutem-extensions.png'/>
 </p>
 
-## About technology
+## 关于技术
 
 <hr />
 
-Shoutem uses [React](https://facebook.github.io/react/) and [React Native](https://facebook.github.io/react-native/) as frameworks for building cross-platform apps. React is an open source JavaScript library providing a **View** from M**V**C pattern, while React Native exposes iOS and Android **native** components to React environment. We're also using [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html) as a simpler way to use UI components. Making a screen in JSX looks like this:
+Shoutem使用[React](https://facebook.github.io/react/)和[React Native](https://facebook.github.io/react-native/)作为构建跨平台应用程序的框架。 
+React是一个开源JavaScript库，它提供了一个M**V**C模式的**View**，而React Native将iOS和Android**原生**组件暴露给React环境。 
+我们还使用[JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)作为使用UI组件的更简单的方法。 
+在JSX中做一个界面看起来像这样：
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/jsx-component-example.png'/>
 </p>
 
-On top of React and React Native, we're using [Redux](http://redux.js.org/), a library for simpler state management. There are several constructs in Redux explained on the next picture.
+在React和React Native之上，我们使用[Redux](http://redux.js.org/) - 一个用于简化状态管理的库。 
+Redux中有几个构造在下一张图片中解释。
 
 <p class="image">
 <img src='{{ site.baseurl }}/img/getting-started/redux.png'/>
 </p>
 
-Each application has a [Redux store](http://redux.js.org/docs/basics/Store.html) which holds the **application state**. When the state changes, React automatically updates the UI components. Application can dispatch [Redux actions](http://redux.js.org/docs/basics/Actions.html) on events (such as tapping on the button) which hold information about the triggered event. Dispatched actions will be handled by [Redux reducers](http://redux.js.org/docs/basics/Reducers.html) which specify what is the next state given the action. Once reducers handle the action, application goes to the new state and React automatically updates the UI component to reflect the new state.
+每个应用程序都有一个[Redux状态管理器](http://redux.js.org/docs/basics/Store.html)，它保存着**应用程序状态**。 当状态改变时，React自动更新UI组件。 
+应用程序可以在触发事件的信息（例如点击按钮）的进行触发[Redux 操作](http://redux.js.org/docs/basics/Actions.html)。 
+分派的操作将由[Redux reducers](http://redux.js.org/docs/basics/Reducers.html)处理，它指定给定操作的下一个状态。 一旦reducers处理动作，应用程序将进入新状态，React会自动更新UI组件以反映新状态。
 
-## Create extension
-Best way to understand the power of extensions, is to get your hands dirty. We'll start with [setting up your development environment]({{ site.baseurl }}/docs/extensions/getting-started/development-environment).
+## 创建扩展
+理解扩展能力的最好方式，是让你亲自进行操作。 我们从[设置您的开发环境]({{ site.baseurl }}/docs/extensions/getting-started/development-environment)开始吧！
